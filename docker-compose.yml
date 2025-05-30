@@ -1,0 +1,19 @@
+# --- File: docker-compose.yml ---
+version: '3.8'
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+
+  cli:
+    build: ./cli
+    volumes:
+      - ./cli:/app
+      - ~/.cli_token:/root/.cli_token
+    depends_on:
+      - api
+
